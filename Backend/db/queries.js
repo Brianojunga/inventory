@@ -25,12 +25,12 @@ async function updateItem(name, quantity, id, image_url, category) {
     "UPDATE items SET name = $1, quantity = $2, inward_date = NOW(), image_url = $3 WHERE id = $4 RETURNING id",
     [name, quantity, image_url, id],
   );
-  const item_id = rows[0].id
+  const item_id = rows[0].id;
 
   await pool.query(
     "UPDATE category_items SET category_id = $1 WHERE item_id = $2",
-    [category, item_id]
-  )
+    [category, item_id],
+  );
 
   return true;
 }
@@ -42,7 +42,7 @@ async function deleteItem(id) {
   return true;
 }
 
-async function addItem(name, quantity, image_url , value) {
+async function addItem(name, quantity, image_url, value) {
   const { rows } = await pool.query("SELECT name FROM items WHERE name = $1", [
     name,
   ]);
@@ -62,19 +62,47 @@ async function addItem(name, quantity, image_url , value) {
   return true;
 }
 
-async function addCategory(name){
-  const { rows } = await pool.query('SELECT * FROM categories')
-  const rowExists = rows.find(row => row.name === name)
-  if(rowExists) return false
-  await pool.query("INSERT INTO categories(name) VALUES ($1)", [name])
-  return true
+async function addCategory(name) {
+  const { rows } = await pool.query(
+    "SELECT * FROM categories WHERE name = $1",
+    [name],
+  );
+  if (rows[0]) return false;
+  await pool.query("INSERT INTO categories(name) VALUES ($1)", [name]);
+  return true;
 }
 
+async function getUsers(username) {
+  const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [
+    username,
+  ]);
+  return rows[0];
+}
+
+async function getUserById(id) {
+  const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+  return rows[0];
+}
+
+async function addUsers(username, password) {
+  const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [
+    username,
+  ]);
+  if (rows[0]) return false;
+  await pool.query("INSERT INTO users(username, password) VALUES ($1, $2)", [
+    username,
+    password,
+  ]);
+  return true;
+}
 module.exports = {
   getCategory,
   getItem,
   updateItem,
   deleteItem,
   addItem,
-  addCategory
+  addCategory,
+  getUsers,
+  getUserById,
+  addUsers,
 };
