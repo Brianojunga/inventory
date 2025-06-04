@@ -1,0 +1,43 @@
+# POST http://localhost:3000/categories
+# Content-Type: application/json
+
+# {
+#     "new_category" : "Furniture"
+# }
+
+# GET http://localhost:3000/categories/1
+
+# GET http://localhost:3000/items/2
+
+# PATCH http://localhost:3000/items/1
+# Content-Type: application/json
+
+#  {   
+#     "item" : "Apple MacBook Pro 16",
+#     "category" : 1,
+#     "quantity" : 10,
+#     "image_url" : "https://cdn.pixabay.com/photo/2016/11/21/16/27/laptop-1846277_1280.jpg"
+# }
+
+
+# DELETE http://localhost:3000/items/1
+
+
+# POST http://localhost:3000/items
+# Content-Type: application/json
+
+# {
+#     "item": "Apple Ultrasharp Monitor 27",
+#     "category": 1,
+#     "quantity": 7,
+#     "image_url": "https://cdn.pixabay.com/photo/2016/11/29/08/41/apple-1868496_1280.jpg"
+# }
+
+
+# POST http://localhost:3000/signup
+# Content-Type: application/json
+
+# {
+#     "username": "testuser",
+#     "password": "0000OOOO"
+# }
