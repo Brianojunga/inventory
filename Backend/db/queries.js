@@ -72,18 +72,6 @@ async function addCategory(name) {
   return true;
 }
 
-async function getUsers(username) {
-  const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [
-    username,
-  ]);
-  return rows[0];
-}
-
-async function getUserById(id) {
-  const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
-  return rows[0];
-}
-
 async function addUsers(username, password) {
   const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [
     username,
@@ -95,6 +83,7 @@ async function addUsers(username, password) {
   ]);
   return true;
 }
+
 module.exports = {
   getCategory,
   getItem,
@@ -102,7 +91,5 @@ module.exports = {
   deleteItem,
   addItem,
   addCategory,
-  getUsers,
-  getUserById,
   addUsers,
 };
