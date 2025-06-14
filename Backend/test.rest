@@ -16,7 +16,7 @@
 #     "item" : "Apple MacBook Pro 16",
 #     "category" : 1,
 #     "quantity" : 10,
-#     "image_url" : "https://cdn.pixabay.com/photo/2016/11/21/16/27/laptop-1846277_1280.jpg"
+#     "image_url" : "https://cdn.pixabay.com/photo/2018/02/10/18/16/apple-3144237_1280.jpg"
 # }
 
 
@@ -34,10 +34,12 @@
 # }
 
 
-# POST http://localhost:3000/signup
+# POST http://localhost:3000/login
 # Content-Type: application/json
 
 # {
 #     "username": "testuser",
 #     "password": "0000OOOO"
 # }
+
+POST http://localhost:3000/logout
