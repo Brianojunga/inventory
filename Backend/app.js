@@ -33,6 +33,7 @@ app.use(
       maxAge: 60 * 60 * 1000, // 1 day
       secure: process.env.NODE_ENV === "production", // Use secure cookies in production
       httpOnly: true, // Prevent client-side JavaScript from accessing the cookie
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
     },
   }),
 );
